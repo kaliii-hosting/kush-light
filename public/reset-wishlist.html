@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset Wishlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        pre {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wishlist Reset Tool</h1>
+    
+    <h2>Current State:</h2>
+    <pre id="current-state"></pre>
+    
+    <button onclick="clearWishlist()">Clear Wishlist</button>
+    <button onclick="refreshState()">Refresh</button>
+    
+    <script>
+        function refreshState() {
+            const state = document.getElementById('current-state');
+            const wishlist = localStorage.getItem('kushie_wishlist');
+            
+            if (wishlist) {
+                try {
+                    const parsed = JSON.parse(wishlist);
+                    state.textContent = `Items: ${JSON.stringify(parsed, null, 2)}\nCount: ${parsed.length}`;
+                } catch (e) {
+                    state.textContent = `Error parsing: ${e.message}\nRaw: ${wishlist}`;
+                }
+            } else {
+                state.textContent = 'No wishlist in localStorage';
+            }
+        }
+        
+        function clearWishlist() {
+            localStorage.removeItem('kushie_wishlist');
+            alert('Wishlist cleared! Please refresh the main app.');
+            refreshState();
+        }
+        
+        // Initial load
+        refreshState();
+    </script>
+</body>
+</html>

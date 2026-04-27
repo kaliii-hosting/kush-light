@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Force Clear Wishlist</title>
+    <script>
+        // Force clear everything
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        // Clear specific items
+        localStorage.removeItem('kushie_wishlist');
+        sessionStorage.removeItem('kushie_wishlist');
+        
+        // Clear cookies
+        document.cookie.split(";").forEach(function(c) { 
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+        });
+        
+        alert('All storage cleared! Please go back to the main app.');
+    </script>
+</head>
+<body>
+    <h1>Storage Cleared</h1>
+    <p>All wishlist data has been forcefully cleared.</p>
+    <a href="/">Go back to app</a>
+</body>
+</html>

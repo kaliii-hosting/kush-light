@@ -1,0 +1,418 @@
+/* Keypad Main Container */
+.keypad-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  padding: 3rem 2rem;
+  position: relative;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+}
+
+.keypad-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.keypad-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Keypad Styles */
+:root {
+  --travel: 20;
+}
+
+.keypad {
+  position: relative;
+  aspect-ratio: 400 / 310;
+  display: flex;
+  place-items: center;
+  width: clamp(280px, 35vw, 400px);
+  -webkit-tap-highlight-color: #0000;
+  transform-style: preserve-3d;
+  transform: rotateX(-15deg) rotateY(0deg);
+}
+
+/* Front-facing specific adjustments */
+.keypad-front-facing {
+  transform: rotateX(-20deg) rotateY(0deg);
+  perspective: 1000px;
+}
+
+.key {
+  transform-style: preserve-3d;
+  border: 0;
+  background: #0000;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease-out;
+}
+
+.key[data-pressed='true'] .key__content,
+.key:active .key__content {
+  translate: 0 calc(var(--travel) * 1%);
+}
+
+.key__content {
+  width: 100%;
+  display: inline-block;
+  height: 100%;
+  transition: translate 0.12s ease-out;
+  container-type: inline-size;
+}
+
+/* Text positioning for original 3D design */
+.key__text {
+  height: 46%;
+  width: 86%;
+  position: absolute;
+  font-size: 12cqi;
+  z-index: 21;
+  top: 5%;
+  left: 0;
+  color: hsl(0 0% 94%);
+  transform: rotateX(36deg) rotateY(45deg) rotateX(-90deg) rotate(0deg);
+  text-align: left;
+  padding: 1ch;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+/* Adjust positioning for front-facing view */
+.keypad-front-facing .key__text {
+  transform: rotateX(20deg) rotateY(0deg) rotateX(-90deg) rotate(0deg);
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: auto;
+  translate: -50% -50%;
+  white-space: nowrap;
+}
+
+.keypad__single {
+  position: absolute;
+  width: 40.5%;
+  left: 54%;
+  bottom: 36%;
+  height: 46%;
+  clip-path: polygon(
+    0 0,
+    54% 0,
+    89% 24%,
+    100% 70%,
+    54% 100%,
+    46% 100%,
+    0 69%,
+    12% 23%,
+    47% 0%
+  );
+  mask: url(https://assets.codepen.io/605876/keypad-single.png?format=auto&quality=86) 50% 50% / 100% 100%;
+  --travel: 26;
+}
+
+.keypad__single--left {
+  left: 29.3%;
+  bottom: 54.2%;
+}
+
+.keypad__single .key__text {
+  width: 52%;
+  height: 62%;
+  translate: 45% -16%;
+}
+
+.keypad-front-facing .keypad__single .key__text {
+  font-size: 16cqi;
+  width: auto;
+  height: auto;
+  translate: -50% -50%;
+}
+
+.keypad__single img {
+  top: 0;
+  opacity: 1;
+  width: 96%;
+  position: absolute;
+  left: 50%;
+  translate: -50% 1%;
+}
+
+.key__mask {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+.keypad__double {
+  position: absolute;
+  background: transparent;
+  width: 64%;
+  height: 65%;
+  left: 18%;
+  bottom: 17.85%;
+  clip-path: polygon(
+    34% 0,
+    93% 44%,
+    101% 78%,
+    71% 100%,
+    66% 100%,
+    0 52%,
+    0 44%,
+    7% 17%,
+    30% 0
+  );
+  mask: url(https://assets.codepen.io/605876/keypad-double.png?format=auto&quality=86) 50% 50% / 100% 100%;
+  --travel: 18;
+}
+
+.keypad__double .key__text {
+  height: 46%;
+  width: 86%;
+  translate: 8% 10%;
+}
+
+.keypad-front-facing .keypad__double .key__text {
+  font-size: 20cqi;
+  width: auto;
+  height: auto;
+  translate: -50% -50%;
+}
+
+.keypad__double img {
+  top: 0;
+  opacity: 1;
+  width: 99%;
+  position: absolute;
+  left: 50%;
+  translate: -50% 1%;
+}
+
+/* Key styling - maintaining original colors */
+#one img {
+  filter: hue-rotate(114deg) saturate(1.4) brightness(1.2);
+}
+
+#two img {
+  filter: brightness(1.4);
+}
+
+#three img {
+  filter: brightness(0.4);
+}
+
+.keypad__base {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.keypad__base img {
+  transition: translate 0.12s ease-out;
+  width: 100%;
+}
+
+/* 3D depth effects */
+.key {
+  transition-property: translate, transform;
+  transition-duration: 0.26s;
+  transition-timing-function: ease-out;
+}
+
+.key:hover {
+  transform: translateZ(10px);
+}
+
+.key[data-pressed='true'] {
+  transform: translateZ(-5px);
+}
+
+/* Display Section */
+.display-section {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.display-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.display-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.display-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+  color: white;
+}
+
+.display-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.display-description {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Product Display */
+.product-display {
+  background: linear-gradient(135deg, #181818 0%, #282828 100%);
+}
+
+.product-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+}
+
+.product-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  color: white;
+}
+
+.product-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  color: #1DB954;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.product-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.product-cta {
+  align-self: flex-start;
+  padding: 0.75rem 2rem;
+  background: #1DB954;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.product-cta:hover {
+  background: #1ed760;
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(29, 185, 84, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .keypad-wrapper {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .keypad {
+    margin: 0 auto;
+  }
+  
+  .display-section {
+    height: 400px;
+  }
+  
+  .product-showcase {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-image-wrapper {
+    height: 200px;
+  }
+  
+  .product-info {
+    padding: 2rem;
+  }
+  
+  .product-name {
+    font-size: 1.5rem;
+  }
+  
+  .product-price {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .keypad-main {
+    padding: 2rem 1rem;
+  }
+  
+  .display-section {
+    height: 300px;
+  }
+  
+  .display-title {
+    font-size: 1.25rem;
+  }
+  
+  .product-name {
+    font-size: 1.25rem;
+  }
+  
+  .product-info {
+    padding: 1.5rem;
+  }
+}

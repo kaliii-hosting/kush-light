@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unregister Service Worker</title>
+</head>
+<body>
+    <h1>Unregistering Service Workers...</h1>
+    <div id="status"></div>
+    <script>
+        const statusDiv = document.getElementById('status');
+        
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                statusDiv.innerHTML += '<p>Found ' + registrations.length + ' service worker(s)</p>';
+                
+                for(let registration of registrations) {
+                    registration.unregister().then(function(success) {
+                        statusDiv.innerHTML += '<p>Unregistered: ' + registration.scope + '</p>';
+                    });
+                }
+                
+                // Clear all caches
+                caches.keys().then(function(names) {
+                    for (let name of names) {
+                        caches.delete(name);
+                        statusDiv.innerHTML += '<p>Deleted cache: ' + name + '</p>';
+                    }
+                });
+                
+                setTimeout(() => {
+                    statusDiv.innerHTML += '<h2>All service workers unregistered! You can close this page.</h2>';
+                }, 1000);
+            });
+        } else {
+            statusDiv.innerHTML = '<p>Service workers not supported</p>';
+        }
+    </script>
+</body>
+</html>

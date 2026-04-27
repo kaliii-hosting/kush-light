@@ -1,0 +1,302 @@
+/* Custom gradient utilities */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-from), var(--tw-gradient-to));
+}
+
+/* Smooth scroll and prevent horizontal overflow */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom scrollbar for notification dropdown */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.5);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.7);
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  body {
+    /* Prevent pull-to-refresh and overscroll */
+    overscroll-behavior: contain;
+    overscroll-behavior-x: none;
+    /* Ensure body takes full viewport */
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  #root {
+    /* Constrain root to viewport */
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent horizontal scroll on all elements except cart */
+  *:not([data-cart-slideout]) {
+    max-width: 100vw !important;
+  }
+  
+  /* Fix for absolute positioned elements except cart */
+  .absolute:not([data-cart-slideout]), .fixed:not([data-cart-slideout]) {
+    max-width: 100vw !important;
+  }
+  
+  /* Allow cart to slide from outside viewport */
+  [data-cart-slideout] {
+    max-width: none !important;
+  }
+}
+
+/* Cart specific mobile fixes */
+@media (max-width: 640px) {
+  /* Fix cart width and positioning */
+  [data-cart-slideout] {
+    width: 100% !important;
+    max-width: 100vw !important;
+    right: 0 !important;
+  }
+  
+  /* Fix cart header spacing */
+  [data-cart-slideout] .border-b {
+    padding: 1rem !important;
+  }
+  
+  /* Fix product card spacing */
+  [data-cart-slideout] .bg-card {
+    padding: 0.75rem !important;
+  }
+  
+  /* Fix product image size */
+  [data-cart-slideout] .w-20 {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  
+  /* Fix product title */
+  [data-cart-slideout] h3 {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  /* Fix quantity controls */
+  [data-cart-slideout] .gap-2 {
+    gap: 0.25rem !important;
+  }
+  
+  /* Fix button sizes */
+  [data-cart-slideout] button.w-8 {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+  
+  /* Fix footer section */
+  [data-cart-slideout] .border-t {
+    padding: 1rem !important;
+  }
+  
+  /* Ensure buttons are properly sized */
+  [data-cart-slideout] .py-4 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+}
+
+/* Video placeholder styling */
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Skeleton Loading Animation */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #2a2a2a 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+/* Smooth image loading transitions */
+.image-loading {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-loaded {
+  opacity: 1;
+}
+
+/* Video loading placeholder */
+.video-placeholder {
+  background: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+/* Optimize image rendering */
+img, video {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Ensure images don't have weird spacing */
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Button glow animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(71, 139, 235, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(71, 139, 235, 0.8);
+  }
+}
+
+/* Toast notification animation */
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.3s ease-out forwards;
+}
+
+/* Touch-friendly interactions for mobile */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(203, 96, 21, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Enhanced touch feedback for active states */
+.touch-manipulation:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease-out;
+}
+
+/* Smooth momentum scrolling for iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}

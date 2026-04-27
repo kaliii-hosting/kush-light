@@ -1,0 +1,82 @@
+/* Admin iOS-Style Neon Orange Spinner */
+
+.admin-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 50;
+}
+
+.admin-spinner-container.full-page {
+  background: #121212;
+}
+
+/* iOS-style spinner */
+.admin-ios-spinner {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.admin-spinner-blade {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 10px;
+  margin-left: -1.5px;
+  margin-top: -18px;
+  border-radius: 3px;
+  background-color: #ff6b00;
+  transform-origin: center 18px;
+  animation: admin-ios-spinner-fade 1s infinite linear;
+}
+
+/* Stagger the animation for each blade */
+.admin-spinner-blade:nth-child(1) { animation-delay: -0.916s; }
+.admin-spinner-blade:nth-child(2) { animation-delay: -0.833s; }
+.admin-spinner-blade:nth-child(3) { animation-delay: -0.75s; }
+.admin-spinner-blade:nth-child(4) { animation-delay: -0.666s; }
+.admin-spinner-blade:nth-child(5) { animation-delay: -0.583s; }
+.admin-spinner-blade:nth-child(6) { animation-delay: -0.5s; }
+.admin-spinner-blade:nth-child(7) { animation-delay: -0.416s; }
+.admin-spinner-blade:nth-child(8) { animation-delay: -0.333s; }
+.admin-spinner-blade:nth-child(9) { animation-delay: -0.25s; }
+.admin-spinner-blade:nth-child(10) { animation-delay: -0.166s; }
+.admin-spinner-blade:nth-child(11) { animation-delay: -0.083s; }
+.admin-spinner-blade:nth-child(12) { animation-delay: 0s; }
+
+@keyframes admin-ios-spinner-fade {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 8px #ff6b00, 0 0 15px #ff6b00;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .admin-ios-spinner {
+    width: 36px;
+    height: 36px;
+  }
+
+  .admin-spinner-blade {
+    width: 2.5px;
+    height: 9px;
+    margin-left: -1.25px;
+    margin-top: -16px;
+    transform-origin: center 16px;
+  }
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section Spacing Test</title>
+  <link rel="stylesheet" href="./src/styles/sections.css">
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    /* Visual indicators */
+    .test-section {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      position: relative;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .test-section::before {
+      content: attr(data-section);
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255,255,255,0.1);
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    
+    .test-section::after {
+      content: attr(data-spacing);
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(29, 185, 84, 0.2);
+      color: #1db954;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    
+    .hero-section {
+      background-color: #0a0a0a;
+      min-height: 85vh;
+    }
+    
+    /* Viewport size indicator */
+    .viewport-indicator {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.8);
+      padding: 10px 20px;
+      border-radius: 5px;
+      z-index: 1000;
+      font-size: 14px;
+    }
+    
+    .spacing-ruler {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(29, 185, 84, 0.5);
+      pointer-events: none;
+    }
+    
+    .spacing-ruler.top {
+      top: 0;
+    }
+    
+    .spacing-ruler.bottom {
+      bottom: 0;
+    }
+    
+    .spacing-value {
+      position: absolute;
+      right: 20px;
+      background: rgba(29, 185, 84, 0.8);
+      color: #000;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+    
+    .spacing-value.top {
+      top: -10px;
+    }
+    
+    .spacing-value.bottom {
+      bottom: -10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="viewport-indicator" id="viewport"></div>
+  
+  <!-- Hero Section -->
+  <div class="hero-section test-section" data-section="Hero Section" data-spacing="No top padding">
+    <div class="spacing-ruler bottom"></div>
+    <div class="spacing-value bottom" id="hero-bottom-spacing">80px</div>
+    <h1>Main Hero Section</h1>
+  </div>
+  
+  <!-- Video Section -->
+  <div class="section-wrapper video-section-section test-section" data-section="Video Section" data-spacing="64px padding">
+    <div class="spacing-ruler top"></div>
+    <div class="spacing-ruler bottom"></div>
+    <div class="spacing-value top" id="video-top-spacing">64px</div>
+    <div class="spacing-value bottom" id="video-bottom-spacing">64px</div>
+    <h2>Video Section</h2>
+  </div>
+  
+  <!-- Products Section -->
+  <div class="section-wrapper products-section test-section" data-section="Products Section" data-spacing="80px padding">
+    <div class="spacing-ruler top"></div>
+    <div class="spacing-ruler bottom"></div>
+    <div class="spacing-value top" id="products-top-spacing">80px</div>
+    <div class="spacing-value bottom" id="products-bottom-spacing">80px</div>
+    <h2>Products Section</h2>
+  </div>
+  
+  <!-- Content Section -->
+  <div class="section-wrapper content-section test-section" data-section="Content Section" data-spacing="72px padding">
+    <div class="spacing-ruler top"></div>
+    <div class="spacing-ruler bottom"></div>
+    <div class="spacing-value top" id="content-top-spacing">72px</div>
+    <div class="spacing-value bottom" id="content-bottom-spacing">72px</div>
+    <h2>Content Section</h2>
+  </div>
+  
+  <!-- Award Winning Section -->
+  <div class="section-wrapper award-winning-section test-section" data-section="Award Section" data-spacing="96px padding">
+    <div class="spacing-ruler top"></div>
+    <div class="spacing-ruler bottom"></div>
+    <div class="spacing-value top" id="award-top-spacing">96px</div>
+    <div class="spacing-value bottom" id="award-bottom-spacing">96px</div>
+    <h2>Award Winning Section</h2>
+  </div>
+  
+  <!-- CTA Section -->
+  <div class="section-wrapper cta-section test-section" data-section="CTA Section" data-spacing="88px padding">
+    <div class="spacing-ruler top"></div>
+    <div class="spacing-ruler bottom"></div>
+    <div class="spacing-value top" id="cta-top-spacing">88px</div>
+    <div class="spacing-value bottom" id="cta-bottom-spacing">88px</div>
+    <h2>CTA Section</h2>
+  </div>
+  
+  <!-- Footer Section -->
+  <div class="footer-section test-section" data-section="Footer" data-spacing="No padding">
+    <h2>Footer</h2>
+  </div>
+  
+  <script>
+    // Update viewport indicator
+    function updateViewport() {
+      const width = window.innerWidth;
+      let device = '';
+      
+      if (width <= 640) {
+        device = 'Mobile';
+      } else if (width <= 1024) {
+        device = 'Tablet';
+      } else if (width <= 1440) {
+        device = 'Desktop';
+      } else {
+        device = 'Extra Large';
+      }
+      
+      document.getElementById('viewport').innerHTML = `
+        <strong>${device}</strong><br>
+        ${width}px × ${window.innerHeight}px
+      `;
+      
+      // Update spacing values based on viewport
+      if (width <= 640) {
+        // Mobile
+        document.getElementById('hero-bottom-spacing').textContent = '48px';
+        document.getElementById('video-top-spacing').textContent = '40px';
+        document.getElementById('video-bottom-spacing').textContent = '40px';
+        document.getElementById('products-top-spacing').textContent = '48px';
+        document.getElementById('products-bottom-spacing').textContent = '48px';
+        document.getElementById('content-top-spacing').textContent = '48px';
+        document.getElementById('content-bottom-spacing').textContent = '48px';
+        document.getElementById('award-top-spacing').textContent = '56px';
+        document.getElementById('award-bottom-spacing').textContent = '56px';
+        document.getElementById('cta-top-spacing').textContent = '56px';
+        document.getElementById('cta-bottom-spacing').textContent = '56px';
+      } else if (width <= 1024) {
+        // Tablet
+        document.getElementById('hero-bottom-spacing').textContent = '48px';
+        document.getElementById('video-top-spacing').textContent = '64px';
+        document.getElementById('video-bottom-spacing').textContent = '64px';
+        document.getElementById('products-top-spacing').textContent = '80px';
+        document.getElementById('products-bottom-spacing').textContent = '80px';
+        document.getElementById('content-top-spacing').textContent = '72px';
+        document.getElementById('content-bottom-spacing').textContent = '72px';
+        document.getElementById('award-top-spacing').textContent = '96px';
+        document.getElementById('award-bottom-spacing').textContent = '96px';
+        document.getElementById('cta-top-spacing').textContent = '88px';
+        document.getElementById('cta-bottom-spacing').textContent = '88px';
+      } else if (width <= 1440) {
+        // Desktop
+        document.getElementById('hero-bottom-spacing').textContent = '96px';
+        document.getElementById('video-top-spacing').textContent = '80px';
+        document.getElementById('video-bottom-spacing').textContent = '80px';
+        document.getElementById('products-top-spacing').textContent = '96px';
+        document.getElementById('products-bottom-spacing').textContent = '96px';
+        document.getElementById('content-top-spacing').textContent = '88px';
+        document.getElementById('content-bottom-spacing').textContent = '88px';
+        document.getElementById('award-top-spacing').textContent = '112px';
+        document.getElementById('award-bottom-spacing').textContent = '112px';
+        document.getElementById('cta-top-spacing').textContent = '104px';
+        document.getElementById('cta-bottom-spacing').textContent = '104px';
+      } else {
+        // Extra Large
+        document.getElementById('hero-bottom-spacing').textContent = '96px';
+        document.getElementById('video-top-spacing').textContent = '80px';
+        document.getElementById('video-bottom-spacing').textContent = '80px';
+        document.getElementById('products-top-spacing').textContent = '96px';
+        document.getElementById('products-bottom-spacing').textContent = '96px';
+        document.getElementById('content-top-spacing').textContent = '88px';
+        document.getElementById('content-bottom-spacing').textContent = '88px';
+        document.getElementById('award-top-spacing').textContent = '112px';
+        document.getElementById('award-bottom-spacing').textContent = '112px';
+        document.getElementById('cta-top-spacing').textContent = '104px';
+        document.getElementById('cta-bottom-spacing').textContent = '104px';
+      }
+    }
+    
+    updateViewport();
+    window.addEventListener('resize', updateViewport);
+  </script>
+</body>
+</html>

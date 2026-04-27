@@ -1,0 +1,29 @@
+{
+  "short_name": "Kushie",
+  "name": "Kushie - Premium Cannabis",
+  "icons": [
+    {
+      "src": "https://fchtwxunzmkzbnibqbwl.supabase.co/storage/v1/object/public/kushie01/logos/Kushie_embllem_1752825829859_deb0r1d.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://fchtwxunzmkzbnibqbwl.supabase.co/storage/v1/object/public/kushie01/logos/Kushie_embllem_1752825829859_deb0r1d.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/kushie-logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "orientation": "portrait",
+  "prefer_related_applications": false
+}

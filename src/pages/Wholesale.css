@@ -1,0 +1,238 @@
+/* Wholesale Hero Section - Now handled by Tailwind classes */
+
+/* Map wrapper to contain z-index */
+.wholesale-map-wrapper {
+  position: relative !important;
+  z-index: 1 !important;
+  isolation: isolate !important;
+  contain: layout style paint !important;
+}
+
+/* Clean Map Container */
+.wholesale-map-container {
+  width: 100%;
+  background: #121212;
+  border-radius: 1rem;
+  position: relative !important;
+  z-index: 1 !important;
+  isolation: isolate !important;
+}
+
+
+/* State highlighting styles */
+.leaflet-interactive {
+  cursor: default;
+}
+
+/* Only operating states should have pointer cursor */
+.animated-state-border.cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* Non-interactive states */
+.non-interactive-state {
+  cursor: default !important;
+  pointer-events: none !important;
+}
+
+/* State tooltip styles */
+.state-tooltip {
+  background: rgba(30, 30, 30, 0.95) !important;
+  color: #CB6015 !important;
+  border: 1px solid #CB6015 !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 8px 16px !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 16px rgba(203, 96, 21, 0.3) !important;
+}
+
+/* Animated border for operating states */
+@keyframes borderGlow {
+  0% {
+    stroke: #CB6015;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 2px #CB6015);
+  }
+  50% {
+    stroke: #ff7b20;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 8px #CB6015) drop-shadow(0 0 15px #CB6015);
+  }
+  100% {
+    stroke: #CB6015;
+    stroke-width: 3;
+    filter: drop-shadow(0 0 2px #CB6015);
+  }
+}
+
+/* Moving border animation */
+@keyframes borderMove {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -30;
+  }
+}
+
+.animated-state-border {
+  animation: borderGlow 3s ease-in-out infinite, borderMove 20s linear infinite;
+  stroke-dasharray: 15 10;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.state-tooltip::before {
+  border-top-color: #CB6015 !important;
+}
+
+/* Remove general pointer cursor - handled by classes now */
+
+/* Popup styles */
+.leaflet-popup-content-wrapper {
+  background: rgba(30, 30, 30, 0.95);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(203, 96, 21, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.leaflet-popup-content {
+  margin: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.leaflet-popup-content h3 {
+  color: #CB6015;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.leaflet-popup-content p {
+  margin: 4px 0;
+  color: #b3b3b3;
+}
+
+.leaflet-popup-tip {
+  background: rgba(30, 30, 30, 0.95);
+  border: 1px solid rgba(203, 96, 21, 0.3);
+}
+
+/* Style map zoom controls */
+.leaflet-control-zoom {
+  background: rgba(30, 30, 30, 0.9) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(203, 96, 21, 0.3) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  z-index: 5 !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(30, 30, 30, 0.9) !important;
+  color: #CB6015 !important;
+  border: none !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 28px !important;
+  text-decoration: none !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(203, 96, 21, 0.2) !important;
+  color: #ff7b20 !important;
+}
+
+/* Dark theme for map tiles */
+.leaflet-tile-pane {
+  filter: brightness(0.8) contrast(1.1);
+}
+
+/* Clean animations */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(203, 96, 21, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(203, 96, 21, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(203, 96, 21, 0);
+  }
+}
+
+.location-marker.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Clean Leaflet styling */
+.leaflet-container {
+  background: #121212;
+  font-family: inherit;
+  border-radius: 1rem;
+}
+
+/* Force all Leaflet elements to stay below overlays */
+.wholesale-map-container .leaflet-pane,
+.wholesale-map-container .leaflet-control-container,
+.wholesale-map-container .leaflet-top,
+.wholesale-map-container .leaflet-bottom,
+.wholesale-map-container .leaflet-control {
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+/* Ensure map container and all children stay below overlays */
+.wholesale-map-container,
+.wholesale-map-container * {
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+/* Specific Leaflet panes */
+.wholesale-map-container .leaflet-map-pane,
+.wholesale-map-container .leaflet-tile-pane,
+.wholesale-map-container .leaflet-overlay-pane,
+.wholesale-map-container .leaflet-shadow-pane,
+.wholesale-map-container .leaflet-marker-pane,
+.wholesale-map-container .leaflet-tooltip-pane,
+.wholesale-map-container .leaflet-popup-pane {
+  z-index: 1 !important;
+}
+
+/* Leaflet container itself */
+.wholesale-map-container .leaflet-container {
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+/* Override Leaflet's default z-index values - scoped to wholesale only */
+.wholesale-map-container .leaflet-pane { z-index: 1 !important; }
+.wholesale-map-container .leaflet-tile-pane { z-index: 2 !important; }
+.wholesale-map-container .leaflet-overlay-pane { z-index: 3 !important; }
+.wholesale-map-container .leaflet-shadow-pane { z-index: 4 !important; }
+.wholesale-map-container .leaflet-marker-pane { z-index: 5 !important; }
+.wholesale-map-container .leaflet-tooltip-pane { z-index: 6 !important; }
+.wholesale-map-container .leaflet-popup-pane { z-index: 7 !important; }
+.wholesale-map-container .leaflet-control { z-index: 8 !important; }
+
+/* Force map section to create new stacking context */
+section:has(.wholesale-map-container) {
+  z-index: 1 !important;
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .wholesale-map-container {
+    height: 400px !important;
+  }
+}

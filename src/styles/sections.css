@@ -1,0 +1,330 @@
+/* Professional Section Spacing Guidelines */
+/* Simplified spacing for better visual flow */
+
+/* Base section wrapper - applies to all sections */
+.section-wrapper {
+  /* Desktop spacing */
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+/* Mobile spacing - 15px */
+@media (max-width: 640px) {
+  .section-wrapper {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+/* Tablet spacing - 17.5px */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .section-wrapper {
+    padding-top: 17.5px;
+    padding-bottom: 17.5px;
+  }
+}
+
+/* Special spacing for specific section types */
+
+/* Hero sections - no top padding, same bottom as other sections */
+.hero-section {
+  padding-top: 0;
+  padding-bottom: 25px;
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    padding-bottom: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-section {
+    padding-bottom: 17.5px;
+  }
+}
+
+/* Video sections - same spacing as base */
+.video-section-section {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+@media (max-width: 640px) {
+  .video-section-section {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .video-section-section {
+    padding-top: 17.5px;
+    padding-bottom: 17.5px;
+  }
+}
+
+/* Product sections - same spacing as base */
+.products-section {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+@media (max-width: 640px) {
+  .products-section {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .products-section {
+    padding-top: 17.5px;
+    padding-bottom: 17.5px;
+  }
+}
+
+/* Award winning section - same spacing with gradient background */
+.award-winning-section {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background: linear-gradient(to bottom, #ffffff, #ffffff, #ffffff);
+}
+
+@media (max-width: 640px) {
+  .award-winning-section {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .award-winning-section {
+    padding-top: 17.5px;
+    padding-bottom: 17.5px;
+  }
+}
+
+/* Content sections - same spacing as base */
+.content-section {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+@media (max-width: 640px) {
+  .content-section {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .content-section {
+    padding-top: 17.5px;
+    padding-bottom: 17.5px;
+  }
+}
+
+/* CTA sections - same spacing as base */
+.cta-section {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+@media (max-width: 640px) {
+  .cta-section {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .cta-section {
+    padding-top: 17.5px;
+    padding-bottom: 17.5px;
+  }
+}
+
+/* Footer section - no padding */
+.footer-section {
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
+  z-index: 10;
+  background: black;
+}
+
+/* Section spacing utility classes */
+.section-spacing-none {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.section-spacing-small {
+  padding-top: 12.5px !important;
+  padding-bottom: 12.5px !important;
+}
+
+@media (max-width: 640px) {
+  .section-spacing-small {
+    padding-top: 7.5px !important;
+    padding-bottom: 7.5px !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .section-spacing-small {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+.section-spacing-large {
+  padding-top: 37.5px !important;
+  padding-bottom: 37.5px !important;
+}
+
+@media (max-width: 640px) {
+  .section-spacing-large {
+    padding-top: 22.5px !important;
+    padding-bottom: 22.5px !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .section-spacing-large {
+    padding-top: 27.5px !important;
+    padding-bottom: 27.5px !important;
+  }
+}
+
+/* First section after hero - no additional spacing needed */
+.hero-section + .section-wrapper {
+  padding-top: 25px;
+}
+
+@media (max-width: 640px) {
+  .hero-section + .section-wrapper {
+    padding-top: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-section + .section-wrapper {
+    padding-top: 17.5px;
+  }
+}
+
+/* Remove negative margins for consecutive sections */
+.video-section-section + .video-section-section {
+  margin-top: 0;
+}
+
+/* Product grid spacing adjustments */
+.products-section .product-grid {
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+/* Visual separator between sections - optional */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1200px;
+}
+
+@media (max-width: 640px) {
+  .section-divider {
+    width: 90%;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section transitions */
+.section-wrapper {
+  transition: padding 0.3s ease;
+}
+
+/* Typography spacing adjustments within sections */
+.section-wrapper h1,
+.section-wrapper h2 {
+  margin-bottom: 1rem;
+}
+
+.section-wrapper h3,
+.section-wrapper h4 {
+  margin-bottom: 0.75rem;
+}
+
+.section-wrapper p {
+  margin-bottom: 1rem;
+}
+
+.section-wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+/* Ensure consistent max-width for content */
+.section-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 641px) {
+  .section-content {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .section-content {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+
+/* Specific adjustments for product sections to reduce gaps */
+.section-wrapper.products-section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media (max-width: 640px) {
+  .section-wrapper.products-section {
+    padding-top: 12.5px;
+    padding-bottom: 12.5px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .section-wrapper.products-section {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+/* Reduce spacing between hero and first content section */
+.hero-section + .section-wrapper:not(.video-section-section) {
+  padding-top: 20px;
+}
+
+@media (max-width: 640px) {
+  .hero-section + .section-wrapper:not(.video-section-section) {
+    padding-top: 12.5px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-section + .section-wrapper:not(.video-section-section) {
+    padding-top: 15px;
+  }
+}

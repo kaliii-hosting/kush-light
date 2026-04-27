@@ -1,0 +1,277 @@
+/* About Slider Styles - Fixed Layout */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+/* CSS Custom Properties */
+@property --hue {
+  initial-value: 0;
+  syntax: '<number>';
+  inherits: false;
+}
+
+@property --chroma {
+  initial-value: 0;
+  syntax: '<number>';
+  inherits: true;
+}
+
+/* Root variables */
+:root {
+  --start: 0;
+  --end: 360;
+  --lightness: 75%;
+  --base-chroma: 0.3;
+}
+
+/* Reset for slider wrapper */
+.about-slider-wrapper {
+  width: 100%;
+  background: #fff;
+  color: #fff;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.about-slider-wrapper * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Grid background pattern */
+.about-slider-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 45px 45px;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* Header section */
+.about-slider-wrapper header {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.about-slider-wrapper h1 {
+  font-size: clamp(4rem, 10vw, 10rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Main content area */
+.about-slider-wrapper main {
+  position: relative;
+  z-index: 2;
+}
+
+/* Content section with sticky label */
+.about-slider-wrapper section.content {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem 5rem;
+}
+
+/* Sticky "Products Include" */
+.about-slider-wrapper section.content h2 {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  white-space: nowrap;
+  height: fit-content;
+  flex-shrink: 0;
+  background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Products list */
+.about-slider-wrapper ul {
+  list-style: none;
+  padding: 50vh 0;
+  margin: 0;
+  flex: 1;
+  --step: calc((var(--end) - var(--start)) / 16);
+}
+
+.about-slider-wrapper li {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 1rem 0;
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+
+/* Color each item */
+.about-slider-wrapper li:not(:last-child) {
+  color: oklch(
+    var(--lightness) 
+    var(--base-chroma) 
+    calc(var(--start) + (var(--step) * var(--i)))
+  );
+}
+
+/* Last item style */
+.about-slider-wrapper li:last-child {
+  background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Email section */
+.about-slider-wrapper section:last-of-type {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-slider-wrapper section:last-of-type h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 600;
+  position: static;
+  transform: none;
+  background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Footer */
+.about-slider-wrapper footer {
+  padding: 2rem;
+  text-align: center;
+  opacity: 0.5;
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Fluid typography helper */
+.fluid {
+  font-size: clamp(1rem, 2vw + 1rem, 3rem);
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Snap scrolling */
+[data-snap='true'] {
+  scroll-snap-type: y proximity;
+}
+
+[data-snap='true'] li {
+  scroll-snap-align: center;
+}
+
+/* Scrollbar color */
+[data-sync-scrollbar='true'] {
+  scrollbar-color: oklch(var(--lightness) var(--chroma) var(--hue)) transparent;
+  scrollbar-width: thin;
+}
+
+/* Animation with GSAP fallback - simplified */
+[data-animate='true'] li {
+  opacity: 0.2;
+}
+
+[data-animate='true'] li:first-child {
+  opacity: 1;
+}
+
+/* CSS Scroll animations if supported */
+@supports (animation-timeline: scroll()) {
+  [data-animate='true'] li {
+    animation: fade-scroll linear both;
+    animation-timeline: view();
+    animation-range: entry 50% exit 50%;
+  }
+
+  @keyframes fade-scroll {
+    0% { 
+      opacity: 0.2;
+      transform: scale(0.95);
+    }
+    50% { 
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% { 
+      opacity: 0.2;
+      transform: scale(0.95);
+    }
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .about-slider-wrapper header {
+    padding: 0 2rem;
+    min-height: 80vh;
+  }
+  
+  .about-slider-wrapper h1 {
+    font-size: clamp(3rem, 12vw, 6rem);
+  }
+  
+  .about-slider-wrapper section.content {
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
+  }
+  
+  .about-slider-wrapper section.content h2 {
+    position: static;
+    transform: none;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+  
+  .about-slider-wrapper ul {
+    padding: 2rem 0;
+  }
+  
+  .about-slider-wrapper li {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    padding: 0.5rem 0;
+  }
+}

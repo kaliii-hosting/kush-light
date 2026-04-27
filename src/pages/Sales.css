@@ -1,0 +1,114 @@
+/* Import Space Grotesk font */
+@import url('https://fonts.googleapis.com/css?family=Space%20Grotesk:700|Space%20Grotesk:400');
+
+/* Root variables for gradient button */
+:root {
+  /* Change this for scaling */
+  --m: 1.25rem;
+  
+  --red: #FF6565;
+  --pink: #FF64F9;
+  --purple: #6B5FFF;
+  --blue: #4D8AFF;
+  --green: #5BFF89;
+  --yellow: #FFEE55;
+  --orange: #FF6D1B;
+}
+
+/* Gradient button wrapper */
+.gradient-button-wrap {
+  display: block;
+  width: 100%;
+}
+
+/* Gradient button styles */
+.gradient-button {
+  border: calc(0.08 * var(--m)) solid transparent;
+  position: relative;
+  color: #F3F3F3;
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  font-size: calc(1.2 * var(--m));
+  font-weight: 700;
+  border-radius: calc(0.7 * var(--m));
+  padding: calc(0.8 * var(--m)) calc(1.2 * var(--m));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(0.5 * var(--m));
+  cursor: pointer;
+  width: 100%;
+  
+  background: linear-gradient(#121213, #121213), 
+    linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)), 
+    linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+  background-origin: border-box;
+  background-clip: padding-box, border-box, border-box;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
+  
+  /* Remove default button styles */
+  outline: none;
+  transition: transform 0.2s;
+}
+
+/* Glow effect underneath */
+.gradient-button::before {
+  content: '';
+  background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+  height: 30%;
+  width: 60%;
+  position: absolute;
+  bottom: -20%;
+  z-index: -5;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
+  filter: blur(calc(0.8 * var(--m)));
+}
+
+/* Hover state */
+.gradient-button:hover,
+.gradient-button:hover::before {
+  animation: animate 0.5s infinite linear;
+}
+
+/* Active state */
+.gradient-button:active {
+  transform: scale(0.98);
+}
+
+/* Animation */
+@keyframes animate {
+  0% { background-position: 0 }
+  100% { background-position: 200% }
+}
+
+/* Icon styling */
+.gradient-button svg {
+  width: calc(1.5 * var(--m));
+  height: calc(1.5 * var(--m));
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1000px) {
+  :root {
+    --m: 1.125rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  :root {
+    --m: 1rem;
+  }
+  
+  .gradient-button {
+    gap: calc(0.4 * var(--m));
+    font-size: calc(1.1 * var(--m));
+    padding: calc(0.7 * var(--m)) calc(1 * var(--m));
+  }
+  
+  .gradient-button svg {
+    width: calc(1.3 * var(--m));
+    height: calc(1.3 * var(--m));
+  }
+}
